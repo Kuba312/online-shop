@@ -7,17 +7,14 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.web.servlet.MockMvc;
-import pl.me.shop.controller.UserController;
 import pl.me.shop.model.dao.Role;
 import pl.me.shop.model.dao.User;
 import pl.me.shop.model.dto.RemindPassword;
 import pl.me.shop.repository.RoleRepository;
 import pl.me.shop.repository.UserRepository;
-import pl.me.shop.service.UserService;
+
 
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
@@ -35,10 +32,6 @@ public class UserServiceImplTest {
     private PasswordEncoder passwordEncoder;
     @Mock
     private RoleRepository roleRepository;
-    @Mock
-    private UserController userController;
-    @Mock
-    private UserService userService;
 
     @Test
     void saveTest() {
@@ -128,7 +121,7 @@ public class UserServiceImplTest {
         //when
         userServiceImpl.restartPassword(user.getActivatedCode(), remindPassword);
 
-        //then
+        //theng
         Mockito.verify(userRepository, Mockito.times(1)).findByActivatedCode(user.getActivatedCode());
 
     }

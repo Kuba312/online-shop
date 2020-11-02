@@ -9,6 +9,8 @@ public interface UserService {
 
     User save(User user);
 
+    User getCurrentUser();
+
     User getById(Long id);
 
     void deleteById(Long id);

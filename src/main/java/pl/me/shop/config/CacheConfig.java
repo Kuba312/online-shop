@@ -1,9 +1,6 @@
 package pl.me.shop.config;
 
-import com.hazelcast.config.Config;
-import com.hazelcast.config.EvictionConfig;
-import com.hazelcast.config.EvictionPolicy;
-import com.hazelcast.config.MapConfig;
+import com.hazelcast.config.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,6 +13,7 @@ public class CacheConfig {
                 .setName("product")
                 .setEvictionConfig(new EvictionConfig()
                         .setEvictionPolicy(EvictionPolicy.LFU)
+                        .setMaxSizePolicy(MaxSizePolicy.FREE_HEAP_SIZE)
                         .setSize(20000)));
     }
 }

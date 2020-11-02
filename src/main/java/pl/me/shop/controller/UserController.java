@@ -33,7 +33,6 @@ public class UserController {
 
     //Pagowanie zwraca stronę z danymi
     @GetMapping
-
     public Page<UserDto> getPageUser(@RequestParam Integer page, @RequestParam Integer size) {
         //38 linia wywołuje sie od prawej do lewej. Najpierw wywołana jest statyczna funkcja of i tworzy ona obiekt pageable,
         // który ma dane na temat strony jaka chcemy pobrać z bazy danych
@@ -51,7 +50,7 @@ public class UserController {
 
     @DeleteMapping
     public void deleteUser(@RequestParam Long id) {
-        userService.getById(id);
+        userService.deleteById(id);
     }
 
     @PutMapping

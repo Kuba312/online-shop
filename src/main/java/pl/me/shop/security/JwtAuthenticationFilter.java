@@ -1,8 +1,7 @@
 package pl.me.shop.security;
 
-import io.jsonwebtoken.Jwt;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import ch.qos.logback.classic.Level;
+import io.jsonwebtoken.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +16,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 //Dodaje możliwość logowania użytkownika do systemu i zwracania tokenu
@@ -42,10 +42,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
   //****************************************************************************
         String token = Jwts.builder().setClaims(claims)
                 .setSubject(((UserDetails) authResult.getPrincipal()).getUsername())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 5))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30))
                 .signWith(SignatureAlgorithm.HS512, "kuba123")
                 .compact();
    //*****************************************************************************
         response.setHeader("Authorization","Bearer " + token);
+
     }
 }

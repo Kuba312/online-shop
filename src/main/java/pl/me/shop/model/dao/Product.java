@@ -8,13 +8,14 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Product {
+@Entity                         //Zmienia obiekt na string i na odwrót: seriazlizacja stringa na obiket javy
+public class Product  implements Serializable {
 
     @Id
     @GeneratedValue

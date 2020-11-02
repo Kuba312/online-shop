@@ -1,6 +1,8 @@
 package pl.me.shop.security;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,26 +41,29 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             return;
 //*********************************************************************************************
         }
-        Claims claims = Jwts.parser().setSigningKey("kuba123")
-                .parseClaimsJws(token.replace("Bearer ", "")).getBody();
-        String authorities = claims.get("authorities", String.class);
-//*********************************************************************************************
-        List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
-        if (authorities != null) {
-            //String[] split = authorities.split(",");
-            simpleGrantedAuthorities = Arrays.stream(authorities.split(","))
-                    .map(SimpleGrantedAuthority::new)
-                    .collect(Collectors.toList());
-//****************************************************************************************************************************
-        }
-        String login = claims.getSubject();
+        
 
-        if (login != null) {
-            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(login, null, simpleGrantedAuthorities);
-            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-            chain.doFilter(request, response);
-        } else {
-            response.setStatus(401);
-        }
+            Claims claims = Jwts.parser().setSigningKey("kuba123")
+                    .parseClaimsJws(token.replace("Bearer ", "")).getBody();
+            String authorities = claims.get("authorities", String.class);
+//*********************************************************************************************
+            List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
+            if (authorities != null) {
+                //String[] split = authorities.split(",");
+                simpleGrantedAuthorities = Arrays.stream(authorities.split(","))
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList());
+//****************************************************************************************************************************
+            }
+            String login = claims.getSubject();
+
+            if (login != null) {
+                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(login, null, simpleGrantedAuthorities);
+                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                chain.doFilter(request, response);
+            } else {
+                response.setStatus(401);
+            }
+
     }
 }

@@ -34,7 +34,6 @@ public class ProductController {
     //Post nie zawsze musi zwrócić ta sama odpowiedź dla dwóch tych samych requestów
     @PostMapping
     public ProductDto saveProduct(@RequestBody ProductDto productDto){
-
         return productMapper.productToProductDto(productService.saveProduct(productMapper.productDtoToProduct(productDto)));
     }
     @DeleteMapping
