@@ -31,5 +31,5 @@ Regex
 
 Spring Security authorization based on a token (Login, Register, Restart Password)
 
-#Setup
+# Setup
 After cloning this repository and run project in Your computer You will be able to access it at localhost:8080.
