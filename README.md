@@ -3,20 +3,20 @@ This project was generated with Spring Boot and it presents a back-end functiona
 
 # Using technologies
 
-Java 11
-Spring Boot 
-Spring Data JPA
-Spring Security
-JWT Authentication
-Hibernate
-Maven
-MySQL 
-Hazelcast 
-Lombok
-JUnit
-Elasticsearch
-SonarQube
-Swagger
+Java 11,
+Spring Boot,
+Spring Data JPA,
+Spring Security,
+JWT Authentication,
+Hibernate,
+Maven,
+MySQL,
+Hazelcast,
+Lombok,
+JUnit,
+Elasticsearch,
+SonarQube,
+Swagger,
 
 # Functions
 
