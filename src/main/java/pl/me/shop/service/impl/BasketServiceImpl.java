@@ -19,22 +19,18 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BasketServiceImpl implements BasketService {
 
-
     private final BasketRepository basketRepository;
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
 
-
     @Override
     public List<Basket> getUserBasket() {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
-
         return basketRepository.getBasketByUserName(name);
     }
 
     @Override
     public Basket addToBasket(Product product) {
-        //Pobiera informacje o zalogowanym użytkowniku
         String login = SecurityContextHolder.getContext().getAuthentication().getName();
         return userRepository.findByLogin(login)
                 .map(user -> productRepository.findById(product.getId())
@@ -57,13 +53,10 @@ public class BasketServiceImpl implements BasketService {
 
     }
 
-
     @Override
     public void deleteProductFromBasket(Long id) {
         String login = SecurityContextHolder.getContext().getAuthentication().getName();
         basketRepository.deleteByUserLoginAndProductId(login, id);
-
-
     }
 
     @Override
@@ -75,6 +68,5 @@ public class BasketServiceImpl implements BasketService {
     private Basket updateQuantityProduct(Double quantity, Basket basket) {
         basket.setQuantity(quantity);
         return basketRepository.save(basket);
-
     }
 }

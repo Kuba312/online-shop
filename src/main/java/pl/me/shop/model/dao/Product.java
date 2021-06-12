@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity                         //Zmienia obiekt na string i na odwrót: seriazlizacja stringa na obiket javy
+@Entity
 public class Product  implements Serializable {
 
     @Id

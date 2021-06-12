@@ -5,12 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-//Object wykorzystywany do komunikacji z użytkownikiem
+
 @Data
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-//Jesli jakies pole nie zostanie wypelnione, wartosc jest nullem
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDto {
 

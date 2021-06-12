@@ -17,16 +17,10 @@ public class FileController {
 
     private final GeneratorFactory generatorFactory;
     private final GenericFactory<FileType, GeneratorStrategyI> genericFactory;
-
-
+    
     @GetMapping
     public void generateFile(@RequestParam FileType fileType) {
         genericFactory.getByKey(fileType).generateFile();
     }
-
-//    @GetMapping
-//    public void generateFile(@RequestParam FileType fileType) {
-//        generatorFactory.getByKey(fileType).generateFile();
-//    }
 
 }

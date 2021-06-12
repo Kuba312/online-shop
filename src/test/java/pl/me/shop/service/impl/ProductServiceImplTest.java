@@ -52,7 +52,6 @@ public class ProductServiceImplTest {
         //then
         Assert.assertEquals(new Product(), result);
 
-
     }
 
     @Test
@@ -60,7 +59,6 @@ public class ProductServiceImplTest {
         //given
         Product product = new Product();
         product.setId(1L);
-
 
         //when
         productServiceImpl.deleteById(1L);

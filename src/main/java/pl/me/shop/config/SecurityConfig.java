@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.me.shop.security.JwtAuthenticationFilter;
 import pl.me.shop.security.JwtAuthorizationFilter;
 
-//włącza security
 @RequiredArgsConstructor
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -23,12 +22,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
 
-
     @Qualifier("userDetailsServiceImpl")
-
     private final UserDetailsService userDetailsService;
 
-    //Konfiguracja security
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf()
@@ -39,14 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager()))
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);//REST jest zawsze STATELESS - nie przechowuje stanu
-        //OpenShift jest STATEFUL
-
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
-
-    //wskazujemy jaka klasa jest odpowiedzialna za szukanie uzytkownika, jaka klasa
-    // odpowiedzialna jest za haszowanie haseł
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth

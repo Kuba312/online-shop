@@ -12,12 +12,9 @@ import pl.me.shop.repository.UserRepository;
 
 import java.util.stream.Collectors;
 
-
-//Serwis do szukania użytkwonika, który chce się zalogować
 @RequiredArgsConstructor
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-
 
     private final UserRepository userRepository;
 

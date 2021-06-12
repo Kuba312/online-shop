@@ -12,7 +12,6 @@ public class XmlGeneratorI extends GeneratorStrategyI {
         return new byte[0];
     }
 
-
     @Override
     public FileType getType() {
         return FileType.XML;

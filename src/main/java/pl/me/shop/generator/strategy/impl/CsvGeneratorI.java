@@ -6,8 +6,6 @@ import pl.me.shop.generator.model.FileType;
 @Component
 public class CsvGeneratorI extends GeneratorStrategyI {
 
-
-
     @Override
     public byte[] generateFile() {
         System.out.println("CSV");

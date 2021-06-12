@@ -16,11 +16,10 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
             "join user u " +
             "on u.id = o.user_id " +
             "where o.user_id =?1;", nativeQuery = true)
-    //Przekazuje wartosci z selecta do tego interfejsu
+
     List<GroupedOrders> getOrdersForCurrentUser(Long userId);
     void getOrdersByOrderNumber(String orderNumber);
 
-    //Używamy jesli nie uzywamy standarowej klasy tabelki
     interface GroupedOrders {
         Double getTotalPrice();
 

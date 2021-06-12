@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Set;
 
-//Klasa opisująca tabelke w bazie danych
 @Entity
 @Data
 @Builder

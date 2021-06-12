@@ -10,13 +10,10 @@ import pl.me.shop.repository.RoleRepository;
 
 import java.util.Optional;
 
-//W tej klasie możemy robić metody,które robią nam beany
 
 @Configuration
 public class AppConfig {
 
-
-    //Ustawia role użytkownikom
     @Bean
     public CommandLineRunner commandLineRunner(RoleRepository roleRepository){
         return args -> {
@@ -34,7 +31,6 @@ public class AppConfig {
         };
     }
 
-    //haszuje hasła
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

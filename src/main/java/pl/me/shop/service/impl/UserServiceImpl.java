@@ -22,7 +22,6 @@ import java.util.UUID;
 @Service
 public class UserServiceImpl implements UserService {
 
-
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
@@ -41,7 +40,6 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findByLogin(login).orElseThrow(EntityNotFoundException::new);
     }
-
 
     @Override
     public User getById(Long id) {

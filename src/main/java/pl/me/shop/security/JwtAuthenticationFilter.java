@@ -19,33 +19,28 @@ import java.util.Map;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-//Dodaje możliwość logowania użytkownika do systemu i zwracania tokenu
+
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
         setAuthenticationManager(authenticationManager);
         setUsernameParameter("login");
     }
-    //Generowanie tokena
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
-      //Pobieramy nazwy ról użytkownika i łączymy je przecinkiem
         String authorities = authResult.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
-  //***************************************************************************
         Map<String, Object> claims = new HashMap<>();
         claims.put("authorities", authorities);
-  //****************************************************************************
         String token = Jwts.builder().setClaims(claims)
                 .setSubject(((UserDetails) authResult.getPrincipal()).getUsername())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30))
                 .signWith(SignatureAlgorithm.HS512, "kuba123")
                 .compact();
-   //*****************************************************************************
         response.setHeader("Authorization","Bearer " + token);
 
     }

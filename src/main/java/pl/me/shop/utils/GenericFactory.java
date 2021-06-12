@@ -1,6 +1,7 @@
 package pl.me.shop.utils;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import pl.me.shop.generator.model.FileType;
 import pl.me.shop.generator.strategy.GeneratorStrategy;
@@ -12,9 +13,7 @@ import java.util.Map;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-//@Qualifier jeśli mam jeden interfejs i kilka implementacji tego interfejsu, to dzięki tej adnotacji moge wstrzyknąć ten interfejs
-// z implementacja, która mnie interesuje
-
+@Qualifier
 @Component
 @RequiredArgsConstructor
 public class GenericFactory<K, V extends GenericStrategy<K>> {

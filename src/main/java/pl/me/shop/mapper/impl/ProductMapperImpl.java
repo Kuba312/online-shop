@@ -8,7 +8,6 @@ import pl.me.shop.model.dto.ProductDto;
 @Component
 public class ProductMapperImpl implements ProductMapper {
 
-
     @Override
     public ProductDto productToProductDto(Product product) {
         return ProductDto.builder()

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class SimpleScheduler {
 
-
     @Scheduled(cron = "0 0 2 ? * *")
     public void interval() {
         System.out.println("interval");

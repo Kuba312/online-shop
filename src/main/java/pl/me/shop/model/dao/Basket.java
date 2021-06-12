@@ -20,7 +20,7 @@ public class Basket {
     @Id
     @GeneratedValue
     private Long id;
-    //ManyToOne jak mam jeden obiekt,a jak mam liste to ManytoMany
+
     @ManyToOne
     private Product product;
 

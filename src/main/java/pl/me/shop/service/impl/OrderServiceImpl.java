@@ -18,11 +18,9 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
-
     private final OrderRepository orderRepository;
     private final BasketService basketService;
     private final UserService userService;
-
 
     @Transactional
     @Override
@@ -32,7 +30,6 @@ public class OrderServiceImpl implements OrderService {
         User user = new User();
         orders1.setOrderNumber(UUID.randomUUID().toString());
         for (Basket basket : userBasket) {
-
             orders1.setProduct(basket.getProduct());
             orders1.setUser(user);
             orders1.setQuantity(basket.getQuantity());

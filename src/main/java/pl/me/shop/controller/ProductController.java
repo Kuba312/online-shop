@@ -16,9 +16,7 @@ import pl.me.shop.service.ProductService;
 @RequestMapping("/api/product")
 public class ProductController {
 
-
     private final ProductService productService;
-
     private final ProductMapper productMapper;
 
     @GetMapping("/{id}")
@@ -31,16 +29,17 @@ public class ProductController {
 
                 .map(productMapper::productToProductDto);
     }
-    //Post nie zawsze musi zwrócić ta sama odpowiedź dla dwóch tych samych requestów
+
     @PostMapping
     public ProductDto saveProduct(@RequestBody ProductDto productDto){
         return productMapper.productToProductDto(productService.saveProduct(productMapper.productDtoToProduct(productDto)));
     }
+
     @DeleteMapping
     public void deleteProductById(@RequestParam Long id){
         productService.deleteById(id);
     }
-    //Put zawsze zwróci ta samą odp dla dwóch requestów i więcej (Podmienia wszystkie dane z rekordu w bazie danych)
+
     @PutMapping
     public ProductDto updateProduct(@RequestBody ProductDto productDto){
         return productMapper.productToProductDto(productService.saveProduct(productMapper.productDtoToProduct(productDto)));

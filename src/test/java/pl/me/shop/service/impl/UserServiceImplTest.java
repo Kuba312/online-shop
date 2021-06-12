@@ -21,10 +21,8 @@ import static org.junit.Assert.assertEquals;
 @ExtendWith(MockitoExtension.class)
 public class UserServiceImplTest {
 
-
     @InjectMocks
     private UserServiceImpl userServiceImpl;
-
 
     @Mock
     private UserRepository userRepository;
@@ -45,7 +43,6 @@ public class UserServiceImplTest {
         //when
         User result = userServiceImpl.save(user);
 
-
         //then
         assertEquals(new User(), result);
 
@@ -60,7 +57,6 @@ public class UserServiceImplTest {
 
         //when
         User userService = userServiceImpl.getById(1L);
-
 
         //then
         assertEquals(1L, userService.getId().longValue());
@@ -80,12 +76,6 @@ public class UserServiceImplTest {
         Mockito.verify(userRepository, Mockito.times(1)).deleteById(1L);
     }
 
-    //    public void remindPassword(RemindPassword remindPassword) {
-//        userRepository.findByMail(remindPassword.getMail()).ifPresent(user -> {
-//            user.setActivatedCode(UUID.randomUUID().toString());
-//            userRepository.save(user);
-//        });
-//    }
     @Test
     void remindPasswordTest() {
         User user = new User();
@@ -101,13 +91,6 @@ public class UserServiceImplTest {
 
     }
 
-    //    public void restartPassword(String activatedCode, RemindPassword remindPassword) {
-//        userRepository.findByActivatedCode(activatedCode).ifPresent(user ->
-//        {
-//            user.setPassword(passwordEncoder.encode(remindPassword.getPassword()));
-//            userRepository.save(user);
-//        });
-//    }
     @Test
     void restartPasswordTest() {
         //given
@@ -121,7 +104,7 @@ public class UserServiceImplTest {
         //when
         userServiceImpl.restartPassword(user.getActivatedCode(), remindPassword);
 
-        //theng
+        //then
         Mockito.verify(userRepository, Mockito.times(1)).findByActivatedCode(user.getActivatedCode());
 
     }

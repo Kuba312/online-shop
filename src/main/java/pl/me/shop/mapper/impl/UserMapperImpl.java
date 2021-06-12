@@ -5,12 +5,10 @@ import pl.me.shop.mapper.UserMapper;
 import pl.me.shop.model.dao.User;
 import pl.me.shop.model.dto.UserDto;
 
-//Funkcje, których używamy do mapowania z useraDto na Usera i odwrotnie. Ma nie wystawiac dokładnych danych do użytkownika w celu większego
-//bezpieczeństwa.
 @Component
 public class UserMapperImpl implements UserMapper {
 
-    //Z bazy danych do użytkownika (dlatego nie przekazujemy hasła)
+
     @Override
     public UserDto userToUserDto(User user) {
         return UserDto.builder()
@@ -22,7 +20,7 @@ public class UserMapperImpl implements UserMapper {
                 .build();
     }
 
-    //Tutaj na odwórt
+
     @Override
     public User userDtoToUser(UserDto userDto) {
         return User.builder()

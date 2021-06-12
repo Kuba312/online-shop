@@ -19,15 +19,13 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
-    //Wstawia do cache wartość zwróconą z funkcji o podanym key i za każdym razem wywołuje funkcje
     @CachePut(cacheNames = "product", key = "#result.id")
     @Override
     public Product saveProduct(Product product) {
         return productRepository.save(product);
     }
 
-    //Wstawia do cache wartość zwróconą z funkcji jeśli klucza nie było w cachu w przeciwnym wypadku pobiera wartość po kluczu z cache
-   @Cacheable(cacheNames = "product", key = "#id")
+    @Cacheable(cacheNames = "product", key = "#id")
     @Override
     public Product getByIdProduct(Long id) {
         return productRepository.findById(id)
@@ -39,7 +37,6 @@ public class ProductServiceImpl implements ProductService {
     public void deleteById(Long id) {
         productRepository.deleteById(id);
     }
-
 
     @Override
     public Page<Product> getPageProduct(Pageable pageable) {

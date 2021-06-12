@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface OrderService {
 
-
     void addProductsFromBasketToOrder();
 
     List<OrderRepository.GroupedOrders> getOrders();
