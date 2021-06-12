@@ -21,6 +21,7 @@ Swagger,
 # Functions
 
 Generating reports in various data formats
+
 Products function - search for products, delete, save, pagable;
 
 Users functions -  find users, create new users, pagable list of users;
